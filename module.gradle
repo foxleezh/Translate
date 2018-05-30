@@ -1,0 +1,70 @@
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions' //扩展插件
+apply plugin: 'com.jakewharton.butterknife'
+apply plugin: 'me.tatarka.retrolambda'
+
+
+android {
+    compileSdkVersion Versions.APP_COMPILE_SDK_VERSION
+    buildToolsVersion Versions.APP_BUILD_TOOLS_VERSION
+
+    defaultConfig {
+        minSdkVersion Versions.APP_MIN_SDK_VERSION
+        targetSdkVersion Versions.APP_TARGET_SDK_VERSION
+        versionCode 1
+        versionName "1.0"
+        ndk {
+            // Specifies the ABI configurations of your native
+            // libraries Gradle should build and package with your APK.
+            abiFilters 'x86', 'armeabi', 'armeabi-v7a'
+
+        }
+        multiDexEnabled true
+    }
+
+    sourceSets {
+        main {
+            if (DEVELOP_MODE.toBoolean()) {
+                manifest.srcFile 'src/main/debug/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/release/AndroidManifest.xml'
+            }
+        }
+    }
+
+    repositories {
+        flatDir {
+            dirs 'base.middleware/libs'
+            dirs 'libs'
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    dexOptions {
+        maxProcessCount 4 // this is the default value
+        javaMaxHeapSize "2g"
+    }
+
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+
+retrolambda {
+    javaVersion JavaVersion.VERSION_1_7
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    api project(':base.middleware')
+    api Libs.butterknife
+    annotationProcessor Libs.butterknife_processor
+}

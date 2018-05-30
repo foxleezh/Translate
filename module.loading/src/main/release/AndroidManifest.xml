@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.foxleezh.translate.loading"
+    >
+
+    <application>
+        <activity
+            android:name="com.foxleezh.translate.SplashActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@style/SplashTheme"
+            android:windowIsTranslucent="false"
+            android:windowSoftInputMode="stateHidden|adjustUnspecified">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.foxleezh.translate.MainActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:exported="false"
+            android:fitsSystemWindows="true"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+
+        <activity
+            android:name="com.foxleezh.translate.LoadingActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden|adjustUnspecified"></activity>
+    </application>
+</manifest>

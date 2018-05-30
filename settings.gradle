@@ -1,0 +1,3 @@
+include ':base.component', ':base.middleware'
+include ':app'
+include ':module.loading'

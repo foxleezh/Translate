@@ -1,0 +1,35 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.jakewharton.butterknife'
+apply plugin: 'me.tatarka.retrolambda'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions' //扩展插件
+
+android {
+    compileSdkVersion Versions.APP_COMPILE_SDK_VERSION
+    buildToolsVersion Versions.APP_BUILD_TOOLS_VERSION
+    useLibrary 'org.apache.http.legacy'
+
+
+    defaultConfig {
+        minSdkVersion Versions.APP_MIN_SDK_VERSION
+        targetSdkVersion Versions.APP_TARGET_SDK_VERSION
+        versionCode APP_VERSION_CODE as int
+        versionName APP_VERSION
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    api fileTree(dir: 'libs', include: ['*.jar'])
+    api project(':base.component')
+
+    api Libs.butterknife
+    annotationProcessor Libs.butterknife_processor
+}

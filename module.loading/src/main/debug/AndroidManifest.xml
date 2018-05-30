@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
+    package="com.foxleezh.translate.loading"
+          >
+
+    <application
+        android:name="com.foxleezh.basemiddleware.ModuleApplication"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/m_loading_app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:replace="android:label"
+    >
+        <activity
+            android:name="com.foxleezh.translate.SplashActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@style/SplashTheme"
+            android:windowIsTranslucent="false"
+            android:windowSoftInputMode="stateHidden|adjustUnspecified">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.foxleezh.translate.MainActivity"
+            android:launchMode="singleTask"
+            android:exported="false"
+            android:windowSoftInputMode="stateHidden|adjustResize"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:fitsSystemWindows="true"
+        />
+
+        <activity
+            android:name="com.foxleezh.translate.LoadingActivity"
+            android:exported="false"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:launchMode="singleTop"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustUnspecified">
+        </activity>
+    </application>
+
+</manifest>

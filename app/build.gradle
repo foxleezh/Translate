@@ -1,0 +1,61 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion Versions.APP_COMPILE_SDK_VERSION
+    buildToolsVersion Versions.APP_BUILD_TOOLS_VERSION
+    useLibrary 'org.apache.http.legacy'
+
+    defaultConfig {
+        applicationId "com.foxleezh.translate"
+        minSdkVersion Versions.APP_MIN_SDK_VERSION
+        targetSdkVersion Versions.APP_TARGET_SDK_VERSION
+        versionCode APP_VERSION_CODE as int
+        versionName APP_VERSION
+        multiDexEnabled true
+
+        externalNativeBuild {
+            cmake {
+                cppFlags ""
+                abiFilters "armeabi"
+            }
+        }
+
+        signingConfigs {
+            myConfig {
+                try {
+                    storeFile file('release/release.jks')
+                    keyAlias 'foxlee'
+                    keyPassword KEY_PASSWORD
+                    storePassword KEYSTORE_PASSWORD
+                }
+                catch (ex) {
+                    throw new InvalidUserDataException("You should define KEYSTORE_PASSWORD and KEY_PASSWORD in gradle.properties.")
+                }
+            }
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.myConfig
+        }
+    }
+    externalNativeBuild {
+        cmake {
+            path "CMakeLists.txt"
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':base.middleware')
+    if (!DEVELOP_MODE.toBoolean()) {
+        implementation project(':module.loading')
+    }
+}
