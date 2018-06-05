@@ -32,6 +32,11 @@ dependencies {
     api "com.android.support:appcompat-v7:${Versions.APP_ANDROID_SUPPORT_VERSION}"
     api 'com.android.support.constraint:constraint-layout:1.1.0'
 
+    // Anko
+    api "org.jetbrains.anko:anko-sdk15:${Versions.ANKO_VERSION}" // sdk19, sdk21, sdk23 are also available
+    api "org.jetbrains.anko:anko-support-v4:${Versions.ANKO_VERSION}"  // In case you need support-v4 bindings
+    api "org.jetbrains.anko:anko-appcompat-v7:${Versions.ANKO_VERSION}"  // For appcompat-v7 bindings
+
     // RxJava 和RxAndroid
     api 'io.reactivex.rxjava2:rxjava:2.1.9'
     api 'io.reactivex.rxjava2:rxandroid:2.0.1'

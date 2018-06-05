@@ -9,6 +9,7 @@ object Versions {
 
     //三方库版本
     val KOTLIN_VERSION = "1.1.51"
+    val ANKO_VERSION = "0.10.5"
     val RETROFIT_VERSION = "2.4.0"
     val RXJAVA_VERSION = "2.1.9"
     val BUTTERKNIFE_VERSION = "8.4.0"
