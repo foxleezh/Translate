@@ -1,7 +1,6 @@
-package com.hazz.kotlinmvp.net
+package com.foxleezh.basemiddleware.net
 
 import com.foxleezh.basemiddleware.Luncher
-import com.hazz.kotlinmvp.api.ApiManager
 import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -19,7 +18,7 @@ object RetrofitManager{
     private var client: OkHttpClient? = null
     private var retrofit: Retrofit? = null
 
-    val service: ApiManager by lazy { getRetrofit()!!.create(ApiManager::class.java)}
+    val service: ApiService by lazy { getRetrofit()!!.create(ApiService::class.java)}
 
     private fun getRetrofit(): Retrofit? {
         if (retrofit == null) {
@@ -39,7 +38,7 @@ object RetrofitManager{
                             .build()
 
                     retrofit = Retrofit.Builder()
-                            .baseUrl(ApiManager.URL)
+                            .baseUrl(API.URL)
                             .client(client!!)
                             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                             .build()

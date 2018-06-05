@@ -1,8 +1,6 @@
-package com.hazz.kotlinmvp.api
+package com.foxleezh.basemiddleware.net
 
-import io.reactivex.Observable
-import okhttp3.ResponseBody
-import retrofit2.http.*
+import android.content.Context
 
 
 /**
@@ -10,24 +8,24 @@ import retrofit2.http.*
  * Api 接口
  */
 
-interface ApiManager {
+class ApiManager private constructor() {
+
+    private var context:Context?=null
 
     companion object {
-        val URL = "http://translate.google.cn/translate_a/single/"
-        val BASE_URL = "http://translate.google.cn/translate_a/single"
+        val instance by lazy(mode = LazyThreadSafetyMode.NONE) {
+            ApiManager()
+        }
     }
 
-    /**
-     * get请求
-     */
-    @GET()
-    fun doGetString(@Url newsId: String, @QueryMap maps: Map<String, String>): Observable<ResponseBody>
+    fun init(context: Context){
+        this.context=context
+    }
 
-    /**
-     * post请求
-     */
-    @POST()
-    fun doPostString(@Url newsId: String, @FieldMap maps: Map<String, String>): Observable<ResponseBody>
+    fun test() {
+        println("test is "+context)
+    }
+
 
 
 

@@ -3,6 +3,7 @@ package com.foxleezh.basemiddleware
 import android.app.ActivityManager
 import android.app.Application
 import android.content.Context
+import com.foxleezh.basemiddleware.net.ApiManager
 import kotlin.properties.Delegates
 
 /**
@@ -28,6 +29,7 @@ class Luncher {
         }
         if (isSelfProcess) {
             context=application
+            ApiManager.instance.init(context)
         }
     }
 
